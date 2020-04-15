@@ -1,0 +1,13 @@
+th {
+    text-align: center;
+}
+
+
+.maintenance {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 0.5rem;
+    border: 1px #d4f8e8 solid;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+}

@@ -1,0 +1,62 @@
+
+ul {
+    list-style: none;
+}
+
+.my-sidebar li {
+    text-decoration: none;
+}
+
+.my-sidebar {
+    margin-top: 4rem;
+}
+
+.item {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-family: 'Roboto' , sans-serif;
+    margin-bottom: 1.5rem;
+    width: 85%;
+}
+
+.item:hover {
+    background: #e4f5fa ;
+    color: #3581dd;
+    border-radius: 10px;
+    border-left: 2px grey solid;
+}
+
+.item i {
+    margin-right: 0.5rem;
+    margin-left: 0.3rem;
+}
+
+.item ul , .item input[type = "checkbox"] {
+    display: none;
+}
+
+.item input:checked ~ ul {
+    display: block;
+}
+
+.my-label {
+    color: #58657d;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.my-label:hover {
+    color: #3581dd;
+}
+
+.my-link {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #58657d;
+}
+
+.my-link:hover {
+    color: #1eb2a6;
+}
+

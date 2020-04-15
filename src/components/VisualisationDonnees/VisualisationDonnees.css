@@ -1,0 +1,20 @@
+.donnees-container {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 0.5rem;
+    border: 1px #d4f8e8 solid;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.donnees-container p{
+    display: inline;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 6rem;
+}
+
+.donnees-container button {
+    margin-right: 4rem;
+}
+

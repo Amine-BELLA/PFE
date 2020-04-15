@@ -1,0 +1,12 @@
+.vehicule {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    column-gap: 5%;
+    text-align: center;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.vehicule select {
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,11 @@
+.volume-classe {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    column-gap: 5%;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.volume-classe select {
+    margin-bottom: 1rem;
+}

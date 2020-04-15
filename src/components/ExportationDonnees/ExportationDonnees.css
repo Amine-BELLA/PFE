@@ -1,0 +1,28 @@
+.exportation-donnees-container {
+text-align: center;
+margin-top: 4rem;
+padding-top: 0.5rem;
+border: 1px #d4f8e8 solid;
+border-radius: 10px;
+font-family: 'Roboto', sans-serif;
+}
+
+.exportation-donnees-container button {
+    margin-top: 3rem;
+}
+
+.exportation-donnees-container i {
+    margin-right: 0.5rem;
+
+}
+
+.exportation-donnees {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    column-gap: 5%;
+    justify-content: center;
+}
+
+.exportation-donnees select {
+    margin-bottom: 1rem;
+}

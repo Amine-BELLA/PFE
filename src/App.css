@@ -1,0 +1,10 @@
+.my-app {
+  box-sizing: border-box;
+  width: 90%;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 20% 75%;
+  margin-left: 5%;
+}

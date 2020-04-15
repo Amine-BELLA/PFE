@@ -1,0 +1,36 @@
+.reseau-layout {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.config-reseau-first-column select {
+    width: 80%;
+    margin-left: 2rem;
+}
+
+.reseau-container {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 0.5rem;
+    border: 1px #d4f8e8 solid;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+h5 {
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+    font-size: 1rem;
+}
+
+.ajouter-reseau {
+    margin-top: 2rem;
+}
+
+.ajouter-reseau i {
+    margin-right: 0.5rem;
+}
+
+.ajouter-reseau button {
+    margin-right: 4rem;
+}

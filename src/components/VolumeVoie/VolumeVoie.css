@@ -1,0 +1,12 @@
+.volume-voie {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    column-gap: 5%;
+    text-align: center;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.volume-voie select {
+    margin-bottom: 1rem;
+}

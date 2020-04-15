@@ -1,0 +1,45 @@
+.top {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.top img {
+    width: 20%;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+hr {
+    width: 100%;
+}
+
+.lines {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 1%;
+    width: 90%;
+    margin-left: 5%;
+
+}
+
+#first {
+    border: none;
+    height: 10%;
+    background: #28902f;
+}
+#second {
+    border: none;
+    height: 10%;
+    background: #1700ff;
+}
+#third {
+    border: none;
+    height: 10%;
+    background: #fe0000;
+}
+p {
+    margin: 0.5rem 2%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+
+}

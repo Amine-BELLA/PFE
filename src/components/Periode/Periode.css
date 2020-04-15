@@ -1,0 +1,12 @@
+.periode {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    column-gap: 5%;
+    justify-content: center;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.periode select {
+    margin-bottom: 1rem;
+}

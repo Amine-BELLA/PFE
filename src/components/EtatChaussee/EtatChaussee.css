@@ -1,0 +1,15 @@
+.etat-chaussee {
+    text-align: center;
+    justify-content: center;
+    margin-top: 4rem;
+    padding-top: 0.5rem;
+    border: 1px #d4f8e8 solid;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+.etat-chaussee select {
+    width: 70%;
+    margin: 0 auto;
+}

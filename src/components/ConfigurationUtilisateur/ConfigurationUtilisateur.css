@@ -1,0 +1,41 @@
+.config-container {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 0.5rem;
+    border: 1px #d4f8e8 solid;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.config-utilisateur-first-column select {
+    width: 80%;
+    margin-left: 2rem;
+}
+
+h5 {
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+    font-size: 1rem;
+}
+
+.text-area {
+    height: 1rem;
+}
+
+.input-layout {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.add-user {
+    margin-top: 2rem;
+}
+
+.add-user i {
+    margin-right: 0.5rem;
+}
+
+.add-user button {
+    margin-right: 4rem;
+}

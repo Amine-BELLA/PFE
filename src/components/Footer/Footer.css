@@ -1,0 +1,39 @@
+.footer-container {
+    margin-top: 6rem;
+    text-align: center;
+}
+
+.footer-container img {
+    width: 8%;
+    position: relative;
+    top: 4rem;
+}
+
+.my-footer {
+    width: 100%;
+    height: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-weight: 300;
+    font-size: 0.8rem;
+}
+
+.email {
+    background:#28902f;
+}
+
+.telephone {
+    background:#1700ff;
+}
+
+.adresse {
+    background:#fe0000;
+}
+
+.email .adresse .telephone {
+    text-align: center;
+
+}

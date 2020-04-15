@@ -1,0 +1,12 @@
+.volume-vitesse {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    column-gap: 5%;
+    text-align: center;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.volume-vitesse select {
+    margin-bottom: 1rem;
+}
