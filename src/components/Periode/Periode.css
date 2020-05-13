@@ -1,6 +1,6 @@
 .periode {
     display: grid;
-    grid-template-columns: 40% 40%;
+    grid-template-columns: 30% 30% 30%;
     column-gap: 5%;
     justify-content: center;
     text-align: center;
@@ -9,4 +9,16 @@
 
 .periode select {
     margin-bottom: 1rem;
+}
+
+.my-datePicker {
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 0.5px solid gray;
+    text-align: center;
+}
+
+.periode-container button {
+    margin-top: 0.5rem;
+
 }
