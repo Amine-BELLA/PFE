@@ -92,16 +92,14 @@ function Periode() {
         });
     }
 
-    function test() {
-        console.log(volumeParPeriode);
-    }
+
 
     return (
         <div className="periode-container">
             <div className="periode">
                 <div>
                     <InputField name="resId" onChange={handleChange} description="ID-Réseau" />
-                    <select onChange={handleChange} name="typeVehicule" class="form-control" id="exampleFormControlSelect1">
+                    <select onChange={handleChange} name="typePoid" class="form-control" id="exampleFormControlSelect1">
                         <option >Type de véhicule</option>
                         <option value="PL">VL</option>
                         <option value="VL">PL</option>
@@ -172,7 +170,6 @@ function Periode() {
             </div>
 
             <button onClick={handleButtonClick} type="button" class="btn btn-outline-info btn-sm">Visualiser</button>
-            {test()}
             {
                 volumeParPeriode.map(donnee => {
                     return ( 
