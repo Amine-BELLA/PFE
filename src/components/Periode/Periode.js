@@ -3,6 +3,7 @@ import "./Periode.css";
 import InputField from "../InputField/InputField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Bar } from 'react-chartjs-2';
 
 // Time Picker imports
 import { makeStyles } from '@material-ui/core/styles';
@@ -43,6 +44,9 @@ function Periode() {
         volumeParPeriode: [],
         isLoading: true
     });
+
+
+
     let { volumeParPeriode, isLoading: loadingState } = backEndResponse;
 
     function handleStartDateChange(date) {
@@ -74,24 +78,49 @@ function Periode() {
 
     }
 
-    async function handleButtonClick() {
+    const [chartData, setChartData] = useState({
+        data: [],
+        loading: true
+    });
+
+    var { data, loading } = chartData;
+
+    function handleButtonClick() {
         chosenValues.debutTime = `${formatDate(startDate)}T${heureDebut}:00`;
         chosenValues.finTime = `${formatDate(endDate)}T${heureFin}:00`;
         console.log(chosenValues);
-        const response = await fetch('http://localhost:8080/volumeParRoute', {
+        fetch('http://localhost:8080/volumeParPeriode', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(chosenValues),
-        });
-        const body = await response.json();
-        setBackEndResponse({
-            volumeParPeriode: body,
-            isLoading: false
-        });
-    }
+        })
+            .then(response => response.json())
+            .then(response => {
+                const body = response;
+                setBackEndResponse({
+                    volumeParPeriode: body,
+                    isLoading: false
+                });
+            })
+        fetch('http://localhost:8080/grapheVolumeParPeriode', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(chosenValues),
+        })
+            .then(response => response.json())
+            .then(response => {
+                const body = response;
+                setChartData({
+                    data: body,
+                    loading: false
+                });
+            })
 
+    }
 
 
     return (
@@ -170,47 +199,53 @@ function Periode() {
             </div>
 
             <button onClick={handleButtonClick} type="button" class="btn btn-outline-info btn-sm">Visualiser</button>
-            {
-                volumeParPeriode.map(donnee => {
-                    return ( 
-                    <div>{JSON.stringify(donnee)}</div>
-                        // <table class="table table-striped">
-                        //     <thead>
-                        //         <tr>
-                        //             <th scope="col">Id</th>
-                        //             <th scope="col">Longueur</th>
-                        //             <th scope="col">Nombre Essieu</th>
-                        //             <th scope="col">Date</th>
-                        //             <th scope="col">Temps</th>
-                        //             <th scope="col">Classe</th>
-                        //             <th scope="col">Vitesse</th>
-                        //             <th scope="col">Headway</th>
-                        //             <th scope="col">Surcharge</th>
-                        //             <th scope="col">Voie</th>
-                        //             <th scope="col">Sens</th>
-                        //         </tr>
-                        //     </thead>
-                        //     <tbody>
-                        //         <tr>
-                        //             <th scope="row">{JSON.stringify(donnee.id)}</th>
-                        //             <td>Mark</td>
-                        //             <td>Otto</td>
-                        //             <td>@mdo</td>
-                        //             <td>@mdo</td>
-                        //             <td>@mdo</td>
-                        //             <td>@mdo</td>
-                        //             <td>@mdo</td>
-                        //             <td>@mdo</td>
-                        //             <td>@mdo</td>
-                        //             <td>@mdo</td>
-                        //             <td>@mdo</td>
-                        //             <td>@mdo</td>
-                        //         </tr>
-                        //     </tbody>
-                        // </table>
-                    );
-                })
-            }
+            {!loadingState && <div className="periode-table">
+                <table class="table table-striped table-md ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Longueur</th>
+                            <th scope="col">Nombre Essieu</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Temps</th>
+                            <th scope="col">Classe</th>
+                            <th scope="col">Vitesse</th>
+                            <th scope="col">Headway</th>
+                            <th scope="col">Surcharge</th>
+                            <th scope="col">Voie</th>
+                            <th scope="col">Sens</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {volumeParPeriode.map(donnee => <tr>
+                            <th scope="row">{JSON.stringify(donnee.id)}</th>
+                            <td>{JSON.stringify(donnee.longueur)}</td>
+                            <td>{JSON.stringify(donnee.nombreEssieu)}</td>
+                            <td>{JSON.stringify(donnee.date)}</td>
+                            <td>{JSON.stringify(donnee.time)}</td>
+                            <td>{JSON.stringify(donnee.classe)}</td>
+                            <td>{JSON.stringify(donnee.vitesse)}</td>
+                            <td>{JSON.stringify(donnee.headway)}</td>
+                            <td>{JSON.stringify(donnee.overloaded)}</td>
+                            <td>{JSON.stringify(donnee.voie)}</td>
+                            <td>{JSON.stringify(donnee.sens)}</td>
+
+                        </tr>)}
+                    </tbody>
+                </table>
+            </div>}
+
+            {!loading && <div>{JSON.stringify(data)}</div>}
+            {!loading && <Bar data={{
+                labels: data.map(d => d[0]),
+                datasets: [{
+                    data: data.map(d => d[1]),
+                    label: "Passage par periode",
+                    backgroundColor: ["#3e95cd"]
+                }
+                ]
+            }} /> }
+
         </div>
     );
 }

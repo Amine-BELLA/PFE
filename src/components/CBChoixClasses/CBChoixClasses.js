@@ -42,8 +42,8 @@ function CBChoixClasses() {
     };
 
     const names = [
-        'Classe 1',
-        'Classe 2',
+        'EU13-1',
+        'EU13-3',
         'Classe 3',
         'Classe 4',
         'Classe 5',

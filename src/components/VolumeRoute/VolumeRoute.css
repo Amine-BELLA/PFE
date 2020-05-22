@@ -1,12 +1,12 @@
 .volume-route {
     display: grid;
-    grid-template-columns: 40% 40%;
+    grid-template-columns: 30% 30% 30%;
     column-gap: 5%;
     text-align: center;
     justify-content: center;
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 
 .volume-route select {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }

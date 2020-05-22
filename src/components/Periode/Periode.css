@@ -22,3 +22,10 @@
     margin-top: 0.5rem;
 
 }
+
+.periode-table {
+    position: relative;
+    right: 3.5rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}

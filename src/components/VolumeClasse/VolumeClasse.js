@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./VolumeClasse.css";
 import InputField from "../InputField/InputField";
 import DatePicker from "react-datepicker";
@@ -9,10 +9,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 import { formatDate } from '../../utils/utils';
-import CBChoixClasses, {CBClassesValues} from "../CBChoixClasses/CBChoixClasses";
-import PPChoixClasses, {PPClassesValues} from "../PPChoixClasses/PPChoixClasses";
-import CPChoixClasses, {CPClassesValues} from "../CPChoixClasses/CPChoixClasses";
-// import {CBClassesValues} from "../CBChoixClasses/CBChoixClasses";
+import CBChoixClasses, { CBClassesValues } from "../CBChoixClasses/CBChoixClasses";
+import PPChoixClasses, { PPClassesValues } from "../PPChoixClasses/PPChoixClasses";
+import CPChoixClasses, { CPClassesValues } from "../CPChoixClasses/CPChoixClasses";
+
+import { Bar } from 'react-chartjs-2';
 
 function VolumeClasse() {
     //Time Picker config Start
@@ -92,27 +93,52 @@ function VolumeClasse() {
         }
     }
 
+    const [backEnd, setBackEnd] = useState({
+        result: {},
+        isLoading: true
+    });
+    var { result, isLoading: loadingState } = backEnd;
+
     function handleButtonClick() {
         chosenValues.debutTime = `${formatDate(startDate)}T${heureDebut}:00`;
         chosenValues.finTime = `${formatDate(endDate)}T${heureFin}:00`;
         chosenValues.modeUtil = modeUtilisation;
-        if (modeUtilisation == "CB") {chosenValues.classes = CBClassesValues }
-        else if (modeUtilisation == "PP") {chosenValues.classes = PPClassesValues }
-        else if (modeUtilisation == "CP") {chosenValues.classes = CPClassesValues }
-        console.log(chosenValues);
+        if (modeUtilisation == "CB") { chosenValues.classes = CBClassesValues }
+        else if (modeUtilisation == "PP") { chosenValues.classes = PPClassesValues }
+        else if (modeUtilisation == "CP") { chosenValues.classes = CPClassesValues }
+        fetch('http://localhost:8080/grapheVolumeParClasse', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(chosenValues),
+        })
+            .then(response => response.json())
+            .then(response => {
+                const body = response;
+                setBackEnd({
+                    result: body,
+                    isLoading: false
+                });
+
+            });
+
     }
+
+
+    //result contains what's coming from the backend
 
     return (
         <div className="volume-classe-container">
             <div className="volume-classe">
                 <div>
                     <InputField onChange={handleChange} name="resId" description="ID-Réseau" />
-                    <select  onChange={handleChange} name="sens" class="form-control" id="exampleFormControlSelect1">
+                    <select onChange={handleChange} name="sens" class="form-control" id="exampleFormControlSelect1">
                         <option >Sens</option>
                         <option value="AB">AB</option>
                         <option value="BA">BA</option>
                     </select>
-                    <select  onChange={handleChange} name="typePoid" class="form-control" id="exampleFormControlSelect1">
+                    <select onChange={handleChange} name="typePoid" class="form-control" id="exampleFormControlSelect1">
                         <option >Type de véhicule</option>
                         <option value="PL">VL</option>
                         <option value="VL">PL</option>
@@ -150,7 +176,7 @@ function VolumeClasse() {
                     </form>
                 </div>
                 <div>
-                    <InputField  onChange={handleChange} className="periode-input-field" name="equipId" description="ID-Equipement" />
+                    <InputField onChange={handleChange} className="periode-input-field" name="equipId" description="ID-Equipement" />
                     <DatePicker
                         name="endDate"
                         selected={endDate}
@@ -178,6 +204,18 @@ function VolumeClasse() {
             </div>
             {renderClasses()}
             <button onClick={handleButtonClick} type="button" class="btn btn-outline-info btn-sm">Visualiser</button>
+            {!loadingState && <Bar data={{
+                labels: Object.keys(result),
+                datasets: [
+                    {
+                        label: "Nombre de passages par Classe",
+                        data: Object.values(result).map(s => s.length),
+                        backgroundColor: ['rgba(136, 225, 242, 1)']
+                    }
+                ]
+            }
+            } />}
+
         </div>
     );
 }
