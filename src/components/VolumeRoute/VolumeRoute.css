@@ -10,3 +10,24 @@
 .volume-route select {
     margin-bottom: 0.5rem;
 }
+
+.choix-equip {
+    position: relative;
+    bottom : 1.5rem;
+}
+
+.end-date-style {
+    position: relative;
+    bottom : 1.1rem; 
+}
+
+.end-hour-style {
+    background-color: red;
+}
+
+.volume-route-table {
+    position: relative;
+    right: 5.65rem;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}

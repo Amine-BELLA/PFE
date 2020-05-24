@@ -3,6 +3,7 @@ import "./VolumeVitesse.css";
 import InputField from "../InputField/InputField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Bar } from 'react-chartjs-2';
 
 // Time Picker imports
 import { makeStyles } from '@material-ui/core/styles';
@@ -67,11 +68,30 @@ function VolumeVitesse() {
             });
         })
     }
+    const [chartData, setChartData] = useState({
+        data: {},
+        loading: true
+    });
 
+    var { data, loading } = chartData;
     function handleButtonClick() {
         chosenValues.debutTime = `${formatDate(startDate)}T${heureDebut}:00`;
         chosenValues.finTime = `${formatDate(endDate)}T${heureFin}:00`;
-        console.log(chosenValues);
+        fetch('http://localhost:8080/grapheVolumeParVitesse', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(chosenValues),
+        })
+            .then(response => response.json())
+            .then(response => {
+                const body = response;
+                setChartData({
+                    data: body,
+                    loading: false
+                });
+            })
     }
     return (
         <div className="volume-vitesse-container">
@@ -151,6 +171,28 @@ function VolumeVitesse() {
                 </div>
             </div>
             <button onClick={handleButtonClick} type="button" class="btn btn-outline-info btn-sm">Visualiser</button>
+            {!loading &&
+                <div className="chart-description">
+                    <Bar data={{
+                labels: Object.keys(data),
+                // labels: ['10-20']
+                datasets: [{
+                    data: Object.values(data),
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                }],
+            }}
+                options={{
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Titre: Nombre de Passage par Vitesse(km/h)',
+                        fontSize: 12,
+                        fontColor: 'rgba(136,225,242,1)'
+
+                    }
+                }} />
+                <p>* Chaque valeur "x" sur les axes des abscisses resprésente les vitesses comprisent entre "x" et "x-10"</p>
+                </div>}
         </div>
     );
 }

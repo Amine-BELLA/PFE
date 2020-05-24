@@ -1,0 +1,84 @@
+-------------------------------------------------------------------------------
+Test set: com.production.demo.Controller.VolumeParAPIsTest
+-------------------------------------------------------------------------------
+Tests run: 20, Failures: 20, Errors: 0, Skipped: 0, Time elapsed: 0.124 s <<< FAILURE! - in com.production.demo.Controller.VolumeParAPIsTest
+testNotifyAll  Time elapsed: 0.049 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testNotifyAll(VolumeParAPIsTest.java:86)
+
+testGetClass  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testGetClass(VolumeParAPIsTest.java:56)
+
+testGrapheVolumeParRoute  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testGrapheVolumeParRoute(VolumeParAPIsTest.java:36)
+
+testGrapheVolumeParClasse  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testGrapheVolumeParClasse(VolumeParAPIsTest.java:26)
+
+testClone  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testClone(VolumeParAPIsTest.java:71)
+
+testWait  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testWait(VolumeParAPIsTest.java:101)
+
+testToString  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testToString(VolumeParAPIsTest.java:76)
+
+testVolumeParClasse  Time elapsed: 0.004 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testVolumeParClasse(VolumeParAPIsTest.java:16)
+
+testWaitLongInt  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testWaitLongInt(VolumeParAPIsTest.java:96)
+
+testGrapheVolumeParVoie  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testGrapheVolumeParVoie(VolumeParAPIsTest.java:41)
+
+testFinalize  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testFinalize(VolumeParAPIsTest.java:106)
+
+testVolumeParPeriode  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testVolumeParPeriode(VolumeParAPIsTest.java:11)
+
+testHashCode  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testHashCode(VolumeParAPIsTest.java:61)
+
+testGrapheVolumeParPeriode  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testGrapheVolumeParPeriode(VolumeParAPIsTest.java:21)
+
+testWaitLong  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testWaitLong(VolumeParAPIsTest.java:91)
+
+testGrapheVolumePar  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testGrapheVolumePar(VolumeParAPIsTest.java:46)
+
+testEquals  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testEquals(VolumeParAPIsTest.java:66)
+
+testNotify  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testNotify(VolumeParAPIsTest.java:81)
+
+testObject  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testObject(VolumeParAPIsTest.java:51)
+
+testGrapheVolumeParVitesse  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Not yet implemented
+	at com.production.demo.Controller.VolumeParAPIsTest.testGrapheVolumeParVitesse(VolumeParAPIsTest.java:31)
+

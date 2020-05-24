@@ -3,7 +3,8 @@ import "./VolumeVoie.css";
 import InputField from "../InputField/InputField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import ChoixVoie, { voieValues } from "../ChoixVoie/ChoixVoie";
+import { Bar } from "react-chartjs-2";
 // Time Picker imports
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -69,10 +70,54 @@ function VolumeVoie() {
 
     }
 
+    const [chartData, setChartData] = useState({
+        data: {},
+        loading: true
+    });
+    let { data, loading } = chartData;
+
+    const [backEndResponse, setBackEndResponse] = useState({
+        volumeParVoie: [],
+        loading: true
+    });
+
+    let { volumeParVoie, loading: isLoading } = backEndResponse;
     function handleButtonClick() {
         chosenValues.debutTime = `${formatDate(startDate)}T${heureDebut}:00`;
         chosenValues.finTime = `${formatDate(endDate)}T${heureFin}:00`;
+        chosenValues.vNums = voieValues;
         console.log(chosenValues);
+        fetch("http://localhost:8080/grapheVolumeParVoie", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(chosenValues)
+        })
+            .then(response => response.json())
+            .then(response => {
+                const body = response;
+                setChartData({
+                    data: body,
+                    loading: false
+                });
+
+            })
+        fetch('http://localhost:8080/volumeParVoie', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(chosenValues),
+        })
+            .then(response => response.json())
+            .then(response => {
+                const body = response;
+                setBackEndResponse({
+                    volumeParVoie: body,
+                    loading: false
+                });
+            })
 
     }
     return (
@@ -147,9 +192,72 @@ function VolumeVoie() {
                         className="my-datePicker"
                         onChange={handleEndDateChange}
                     />
+                    <ChoixVoie />
                 </div>
             </div>
             <button onClick={handleButtonClick} type="button" class="btn btn-outline-info btn-sm">Visualiser</button>
+            {!isLoading && <div className="volume-voie-table">
+                <table class="table table-striped table-md ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Id-Equipement</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Temps</th>
+                            <th scope="col">Longueur</th>
+                            <th scope="col">Nombre Essieu</th>
+                            <th scope="col">Classe</th>
+                            <th scope="col">Vitesse</th>
+                            <th scope="col">Headway</th>
+                            <th scope="col">Surcharge</th>
+                            <th scope="col">Voie</th>
+                            <th scope="col">Sens</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {volumeParVoie.map(donnee => <tr>
+                            <th scope="row">{JSON.stringify(donnee.id)}</th>
+                            <td>{JSON.stringify(donnee.equipementId)}</td>
+                            <td>{JSON.stringify(donnee.date)}</td>
+                            <td>{JSON.stringify(donnee.time)}</td>
+                            <td>{JSON.stringify(donnee.longueur)}</td>
+                            <td>{JSON.stringify(donnee.nombreEssieu)}</td>
+                            <td>{JSON.stringify(donnee.classe)}</td>
+                            <td>{JSON.stringify(donnee.vitesse)}</td>
+                            <td>{JSON.stringify(donnee.headway)}</td>
+                            <td>{JSON.stringify(donnee.surcharge)}</td>
+                            <td>{JSON.stringify(donnee.voie)}</td>
+                            <td>{JSON.stringify(donnee.sens)}</td>
+
+                        </tr>)}
+                    </tbody>
+                </table>
+            </div>}
+            {!loading && <div className="volume-voie-chart">
+                <Bar
+                    data={
+                        {
+                            labels: Object.keys(data),
+                            datasets: [{
+                                data: Object.values(data).map(s => s.length),
+                                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+
+                            }]
+                        }
+                    }
+                    options={{
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Titre: Nombre de passage détecté sur chaque Voie Seelectionnée',
+                            fontSize: 12,
+                            fontColor: 'rgba(136,225,242,1)'
+
+                        }
+                    }}
+                />
+            </div>
+            }
         </div >
     );
 }

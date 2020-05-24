@@ -13,4 +13,16 @@
 
 .volume-classe-container button {
     margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.classe-choix-voie {
+    position: relative;
+    bottom: 0.8rem;
+}
+
+.classe-table {
+    position: relative;
+    right: 4rem;
+    margin-top: 2rem;
 }

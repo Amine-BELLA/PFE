@@ -1,6 +1,6 @@
 .volume-sens {
     display: grid;
-    grid-template-columns: 40% 40%;
+    grid-template-columns: 30% 30% 30%;
     column-gap: 5%;
     text-align: center;
     justify-content: center;
@@ -9,4 +9,9 @@
 
 .volume-sens select {
     margin-bottom: 1rem;
+}
+
+.volume-sens-container button {
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
 }

@@ -13,4 +13,11 @@
 
 .volume-voie-container button {
     margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.volume-voie-table {
+    position: relative;
+    right: 4rem;
+    font-size: 0.8rem;
 }

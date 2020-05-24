@@ -235,16 +235,24 @@ function Periode() {
                 </table>
             </div>}
 
-            {!loading && <div>{JSON.stringify(data)}</div>}
+            {/* {!loading && <div>{JSON.stringify(data)}</div>} */}
             {!loading && <Bar data={{
                 labels: data.map(d => d[0]),
                 datasets: [{
                     data: data.map(d => d[1]),
-                    label: "Passage par periode",
-                    backgroundColor: ["#3e95cd"]
-                }
-                ]
-            }} /> }
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                }],
+            }}
+                options={{
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Titre: Nombre de Passage par periode',
+                        fontSize: 12,
+                        fontColor: 'rgba(136,225,242,1)'
+
+                    }
+                }} />}
 
         </div>
     );

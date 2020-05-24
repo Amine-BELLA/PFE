@@ -13,4 +13,15 @@
 
 .volume-vitesse-container button {
     margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.chart-description p {
+    font-size: 0.8rem;
+}
+
+.chart-description {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
 }
