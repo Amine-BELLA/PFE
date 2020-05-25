@@ -1,0 +1,28 @@
+.vitesse-periode {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 5%;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.vitesse-periode select {
+    margin-bottom: 0.7rem;
+}
+
+.my-datePicker {
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 0.5px solid gray;
+    text-align: center;
+}
+
+.vitesse-periode-container button {
+    margin-top: 0.5rem;
+
+}
+
+.chart-horaire {
+    margin-top: 1.5rem;
+}

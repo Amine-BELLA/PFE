@@ -43,7 +43,6 @@ function VolumeClasse() {
         resId: 0,
         modeUtil: "",
         equipId: 0,
-        typePoid: "",
     });
 
     function handleStartDateChange(date) {
@@ -157,12 +156,6 @@ function VolumeClasse() {
             <div className="volume-classe">
                 <div>
                     <InputField onChange={handleChange} name="resId" description="ID-Réseau" />
-                    <select onChange={handleChange} name="typePoid" class="form-control" id="exampleFormControlSelect1">
-                        <option >Type de véhicule</option>
-                        <option value="PL">VL</option>
-                        <option value="VL">PL</option>
-                        <option value="T">Total</option>
-                    </select>
                     <div className="classe-choix-voie">
                         <ChoixVoie />
                     </div>

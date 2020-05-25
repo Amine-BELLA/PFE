@@ -3,7 +3,7 @@ import "./VisualisationDonnees.css"
 import { useState } from "react";
 import MultiChoice from "../MultiChoice/MultiChoice.js";
 import MultiVehiculeChoice from "../MultiVehiculeChoice/MultiVehiculeChoice";
-
+import MultiVitesseChoice from "../MultiVitesseChoice/MultiVitesseChoice";
 
 function VisualisationDonnees() {
 
@@ -44,6 +44,7 @@ function VisualisationDonnees() {
 
             {verifyVolumeClick && <MultiChoice />}
             {verifyVehiculeClick && <MultiVehiculeChoice />}
+            {verifyVitesseClick && <MultiVitesseChoice />}
         </div>
     );
 }
