@@ -174,8 +174,10 @@ function VolumeVitesse() {
             {!loading &&
                 <div className="chart-description">
                     <Bar data={{
-                labels: Object.keys(data),
-                // labels: ['10-20']
+                // labels: Object.keys(data),
+                labels: ['0-10','10-20','20-30','30-40','40-50','50-60','60-70','70-80','80-90','90-100','100-110',
+                '110-120','120-130','130-140','140-150','150-160','160-170','170-180','180-190','190-200'],
+                // labels: [0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180],
                 datasets: [{
                     data: Object.values(data),
                     backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
@@ -191,7 +193,6 @@ function VolumeVitesse() {
 
                     }
                 }} />
-                <p>* Chaque valeur "x" sur les axes des abscisses resprésente les vitesses comprisent entre "x" et "x-10"</p>
                 </div>}
         </div>
     );

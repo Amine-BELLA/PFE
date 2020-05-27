@@ -197,14 +197,24 @@ function VitessePeriode() {
                                 "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00",
                                 "23:00"],
                             datasets: [{
-                                data: data["Poids Lourd"],
-                                label: "Poids lourd",
+                                data: data["Poids Lourd_AB"],
+                                label: "Poids lourd-sens AB",
                                 borderColor: "#3e95cd",
                                 fill: false
                             }, {
-                                data: data["Véhicule leger"],
-                                label: "Véhicule leger",
+                                data: data["Véhicule Leger_AB"],
+                                label: "Véhicule leger-sens AB",
                                 borderColor: "#8e5ea2",
+                                fill: false
+                            }, {
+                                data: data["Poids Lourd_BA"],
+                                label: "Poids lourd-sens BA",
+                                borderColor: "#3cba9f",
+                                fill: false
+                            }, {
+                                data: data["Véhicule Leger_BA"],
+                                label: "Poids lourd-sens BA",
+                                borderColor: "#c45850",
                                 fill: false
                             }]
                         }
@@ -225,26 +235,36 @@ function VitessePeriode() {
                         data={{
                             labels: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
                             datasets: [{
-                                data: secondData["Poids Lourd"],
-                                label: "Poids lourd",
+                                data: data["Poids Lourd_AB"],
+                                label: "Poids lourd-sens AB",
                                 borderColor: "#3e95cd",
                                 fill: false
                             }, {
-                                data: secondData["Poids Leger"],
-                                label: "Véhicule leger",
+                                data: data["Véhicule Leger_AB"],
+                                label: "Véhicule leger-sens AB",
                                 borderColor: "#8e5ea2",
+                                fill: false
+                            }, {
+                                data: data["Poids Lourd_BA"],
+                                label: "Poids lourd-sens BA",
+                                borderColor: "#3cba9f",
+                                fill: false
+                            }, {
+                                data: data["Véhicule Leger_BA"],
+                                label: "Poids lourd-sens BA",
+                                borderColor: "#c45850",
                                 fill: false
                             }]
                         }
                         }
                         options={
-                            {
-                                title: {
-                                    display: true,
-                                    text: 'Titre: Répartition Journalière de la vitesse'
-                                }
+                        {
+                            title: {
+                                display: true,
+                                text: 'Titre: Répartition Journalière de la vitesse'
                             }
                         }
+                    }
                     />
                 </div>}
         </div>

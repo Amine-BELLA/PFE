@@ -1,0 +1,35 @@
+.temps-reel {
+    text-align: center;
+    justify-content: center;
+    margin-top: 4rem;
+    padding-top: 0.5rem;
+    border: 1px #d4f8e8 solid;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.temps-reel-grid {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    column-gap: 5%;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.temps-reel-voie {
+    position: relative;
+    bottom: 1.5rem;
+}
+
+.temps-reel {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.temps-reel-table {
+        position: relative;
+        /* left: 2.5rem; */
+        margin-top: 2rem;
+        font-size: 0.8rem;    
+}

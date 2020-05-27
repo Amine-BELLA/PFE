@@ -13,6 +13,7 @@ import EtatChaussee from "./components/EtatChaussee/EtatChaussee";
 import ExportationRapports from "./components/ExportationRapports/ExportationRapports";
 import ExportationDonnees from "./components/ExportationDonnees/ExportationDonnees";
 import Maintenance from "./components/Maintenance/Maintenance";
+import TempsReel from "./components/TempsReel/TempsReel";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route path="/configuration-reseau" exact component={ConfigurationReseau} />
       <Route path="/configuration-equipements" exact component={ConfiguratinEquipements} />
       <Route path="/visualisation-donnees" component={VisualisationDonnees} />
+      <Route path="/visualisation-temps-reel" component={TempsReel} />
       <Route path="/suivi-etat-chaussee" component={EtatChaussee} />
       <Route path="/generation-rapport" component={ExportationRapports} />
       <Route path="/exportation-donnees" component={ExportationDonnees} />

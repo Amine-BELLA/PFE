@@ -7,7 +7,7 @@ import ChoixVoie, { voieValues } from "../ChoixVoie/ChoixVoie";
 import CBChoixClasses, { CBClassesValues } from "../CBChoixClasses/CBChoixClasses";
 import PPChoixClasses, { PPClassesValues } from "../PPChoixClasses/PPChoixClasses";
 import CPChoixClasses, { CPClassesValues } from "../CPChoixClasses/CPChoixClasses";
-import { Bar } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 // Time Picker imports
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -195,24 +195,11 @@ function VitesseClasse() {
             </div>
             <button onClick={handleButtonClick} type="button" class="btn btn-outline-info btn-sm">Visualiser</button>
             {!loading &&
-                <div>
-                    {JSON.stringify(data)}
-                    <br />
-                    {JSON.stringify(Object.keys(data))}
-                    <br />
-                    <br />
-                    {JSON.stringify(Object.values(data).map( v => Object.values(v)))}
-                </div>}
-            {/* {!loading &&
-                <div>
+                <div className="vitesse-classe-chart">
                     <Bar data={{
-                        labels: `${Object.keys(data)}-${Object.keys(Object.keys(data))}` ,
+                        labels: Object.keys(data),
                         datasets: [{
-                            data: Object.values(data).map( v => {
-                                for (var i=0 ; i<100 ; i++) {
-                                    return(v[i][0]);
-                                }
-                            }),
+                            data: Object.values(data),
                             backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
                         }],
                     }}
@@ -220,13 +207,14 @@ function VitesseClasse() {
                             legend: { display: false },
                             title: {
                                 display: true,
-                                text: 'Titre: Nombre de Passage par periode',
+                                text: 'Titre: Vitesse moyenne par classe et par voie',
                                 fontSize: 12,
-                                fontColor: 'rgba(136,225,242,1)'
 
                             }
                         }} />
-                </div>} */}
+                </div>
+            }
+
         </div>
     );
 }

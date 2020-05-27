@@ -4,6 +4,7 @@ import InputField from "../InputField/InputField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ChoixIdEquipements, { IdEquipementsValues } from "../ChoixIdEquipements/ChoixIdEquipements";
+import {Bar} from "react-chartjs-2";
 
 // Time Picker imports
 import { makeStyles } from '@material-ui/core/styles';
@@ -71,12 +72,32 @@ function VitesseRoute() {
 
     }
 
-
+    const [chartData, setChartData] = useState({
+        data: {},
+        loading: true
+    });
+    var { data, loading } = chartData;
     function handleButtonClick() {
         chosenValues.debutTime = `${formatDate(startDate)}T${heureDebut}:00`;
         chosenValues.finTime = `${formatDate(endDate)}T${heureFin}:00`;
         chosenValues.equipIds = IdEquipementsValues;
         console.log(chosenValues);
+        fetch('http://localhost:8080/vitesseParRoute', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(chosenValues),
+        })
+            .then(response => response.json())
+            .then(response => {
+                const body = response;
+                setChartData({
+                    data: body,
+                    loading: false
+                });
+            })
+
 
     }
 
@@ -151,6 +172,26 @@ function VitesseRoute() {
                 </div>
             </div>
             <button onClick={handleButtonClick} type="button" class="btn btn-outline-info btn-sm">Visualiser</button>
+            {!loading &&
+                <div className="vitesse-classe-chart">
+                    <Bar data={{
+                        labels: Object.keys(data),
+                        datasets: [{
+                            data: Object.values(data),
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                        }],
+                    }}
+                        options={{
+                            legend: { display: false },
+                            title: {
+                                display: true,
+                                text: 'Titre: Vitesse moyenne par route et par type de véhicule',
+                                fontSize: 12,
+
+                            }
+                        }} />
+                </div>
+            }
         </div>
     );
 }
