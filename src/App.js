@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
 import "./components/Header/Header";
 import Header from './components/Header/Header';
@@ -14,22 +14,26 @@ import ExportationRapports from "./components/ExportationRapports/ExportationRap
 import ExportationDonnees from "./components/ExportationDonnees/ExportationDonnees";
 import Maintenance from "./components/Maintenance/Maintenance";
 import TempsReel from "./components/TempsReel/TempsReel";
+import Cartographie from "./components/Cartographie/Cartographie";
 
 function App() {
+
+
   return (
     <Router className="my-app">
       <Header />
       <div className="layout">
-      <SideBar />
-      <Route path="/configuration-utilisateurs" exact component={ConfigurationUtilisateur} />
-      <Route path="/configuration-reseau" exact component={ConfigurationReseau} />
-      <Route path="/configuration-equipements" exact component={ConfiguratinEquipements} />
-      <Route path="/visualisation-donnees" component={VisualisationDonnees} />
-      <Route path="/visualisation-temps-reel" component={TempsReel} />
-      <Route path="/suivi-etat-chaussee" component={EtatChaussee} />
-      <Route path="/generation-rapport" component={ExportationRapports} />
-      <Route path="/exportation-donnees" component={ExportationDonnees} />
-      <Route path="/liste-etat-equipements" component={Maintenance} />
+        <SideBar />
+        <Route path="/configuration-utilisateurs" exact component={ConfigurationUtilisateur} />
+        <Route path="/configuration-reseau" exact component={ConfigurationReseau} />
+        <Route path="/configuration-equipements" exact component={ConfiguratinEquipements} />
+        <Route path="/visualisation-donnees" component={VisualisationDonnees} />
+        <Route path="/visualisation-temps-reel" component={TempsReel} />
+        <Route path="/suivi-etat-chaussee" component={EtatChaussee} />
+        <Route path="/generation-rapport" component={ExportationRapports} />
+        <Route path="/exportation-donnees" component={ExportationDonnees} />
+        <Route path="/liste-etat-equipements" component={Maintenance} />
+        <Route path="/" exact component={Cartographie} />
       </div>
       <Footer />
     </Router>
