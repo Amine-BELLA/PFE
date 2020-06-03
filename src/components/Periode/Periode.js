@@ -4,14 +4,16 @@ import InputField from "../InputField/InputField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Bar } from 'react-chartjs-2';
-
+import Pagination from "../../utils/Pagination.js";
 // Time Picker imports
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 import { formatDate } from '../../utils/utils';
-
 function Periode() {
+
+
+
     //Time Picker config Start
     const useStyles = makeStyles((theme) => ({
         container: {
@@ -88,7 +90,6 @@ function Periode() {
     function handleButtonClick() {
         chosenValues.debutTime = `${formatDate(startDate)}T${heureDebut}:00`;
         chosenValues.finTime = `${formatDate(endDate)}T${heureFin}:00`;
-        console.log(chosenValues);
         fetch('http://localhost:8080/volumeParPeriode', {
             method: 'POST',
             headers: {
@@ -120,6 +121,19 @@ function Periode() {
                 });
             })
 
+
+    }
+    //Pagination 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [elementsPerPage, setElementsPerPage] = useState(20);
+    const indexOfLastElement = currentPage * elementsPerPage;
+    const indexOfFirstElement = indexOfLastElement - elementsPerPage;
+    const totalElements = volumeParPeriode.length;
+    const visibleElements = volumeParPeriode.slice(indexOfFirstElement, indexOfLastElement);
+
+    function paginate(pageNumber) {
+        setCurrentPage(pageNumber);
+        
     }
 
 
@@ -199,6 +213,7 @@ function Periode() {
             </div>
 
             <button onClick={handleButtonClick} type="button" class="btn btn-outline-info btn-sm">Visualiser</button>
+
             {!loadingState && <div className="periode-table">
                 <table class="table table-striped table-md ">
                     <thead>
@@ -217,7 +232,7 @@ function Periode() {
                         </tr>
                     </thead>
                     <tbody>
-                        {volumeParPeriode.map(donnee => <tr>
+                        {visibleElements.map(donnee => <tr>
                             <th scope="row">{JSON.stringify(donnee.id)}</th>
                             <td>{JSON.stringify(donnee.longueur)}</td>
                             <td>{JSON.stringify(donnee.nombreEssieu)}</td>
@@ -226,16 +241,20 @@ function Periode() {
                             <td>{JSON.stringify(donnee.classe)}</td>
                             <td>{JSON.stringify(donnee.vitesse)}</td>
                             <td>{JSON.stringify(donnee.headway)}</td>
-                            <td>{JSON.stringify(donnee.overloaded)}</td>
+                            <td>{JSON.stringify(donnee.surcharge)}</td>
                             <td>{JSON.stringify(donnee.voie)}</td>
                             <td>{JSON.stringify(donnee.sens)}</td>
 
                         </tr>)}
                     </tbody>
                 </table>
+                <Pagination
+                    elementsPerPage={elementsPerPage}
+                    totalElements={volumeParPeriode.length}
+                    paginate={paginate}
+                />
             </div>}
 
-            {/* {!loading && <div>{JSON.stringify(data)}</div>} */}
             {!loading && <Bar data={{
                 labels: data.map(d => d[0]),
                 datasets: [{
@@ -253,6 +272,8 @@ function Periode() {
 
                     }
                 }} />}
+
+
 
         </div>
     );

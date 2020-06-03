@@ -12,6 +12,8 @@
     "chart.js": "^2.9.3",
     "dateformat": "^3.0.3",
     "google-maps-react": "^2.0.6",
+    "jspdf": "^1.5.3",
+    "jspdf-autotable": "^3.5.3",
     "leaflet": "^1.6.0",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",

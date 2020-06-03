@@ -9,6 +9,7 @@ import { Bar } from "react-chartjs-2";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { formatDate } from '../../utils/utils';
+import Pagination from "../../utils/Pagination.js";
 
 
 function VolumeVoie() {
@@ -120,6 +121,19 @@ function VolumeVoie() {
             })
 
     }
+
+    //Pagination 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [elementsPerPage, setElementsPerPage] = useState(20);
+    const indexOfLastElement = currentPage * elementsPerPage;
+    const indexOfFirstElement = indexOfLastElement - elementsPerPage;
+    const totalElements = volumeParVoie.length;
+    const visibleElements = volumeParVoie.slice(indexOfFirstElement, indexOfLastElement);
+
+    function paginate(pageNumber) {
+        setCurrentPage(pageNumber);
+
+    }
     return (
         <div className="volume-voie-container">
             <div className="volume-voie">
@@ -215,7 +229,7 @@ function VolumeVoie() {
                         </tr>
                     </thead>
                     <tbody>
-                        {volumeParVoie.map(donnee => <tr>
+                        {visibleElements.map(donnee => <tr>
                             <th scope="row">{JSON.stringify(donnee.id)}</th>
                             <td>{JSON.stringify(donnee.equipementId)}</td>
                             <td>{JSON.stringify(donnee.date)}</td>
@@ -232,6 +246,11 @@ function VolumeVoie() {
                         </tr>)}
                     </tbody>
                 </table>
+                <Pagination
+                    elementsPerPage={elementsPerPage}
+                    totalElements={volumeParVoie.length}
+                    paginate={paginate}
+                />
             </div>}
             {!loading && <div className="volume-voie-chart">
                 <Bar

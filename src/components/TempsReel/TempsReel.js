@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./TempsReel.css";
 import InputField from "../InputField/InputField";
 import ChoixVoie, { voieValues } from "../ChoixVoie/ChoixVoie";
+import Pagination from "../../utils/Pagination.js";
 
 function TempsReel() {
 
@@ -40,13 +41,24 @@ function TempsReel() {
             .then(response => response.json())
             .then(response => {
                 const body = response;
-                setBackEnd ( {
-                    result : body,
-                    loading : false
+                setBackEnd({
+                    result: body,
+                    loading: false
                 });
             })
     }
+    //Pagination 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [elementsPerPage, setElementsPerPage] = useState(20);
+    const indexOfLastElement = currentPage * elementsPerPage;
+    const indexOfFirstElement = indexOfLastElement - elementsPerPage;
+    const totalElements = result.length;
+    const visibleElements = result.slice(indexOfFirstElement, indexOfLastElement);
 
+    function paginate(pageNumber) {
+        setCurrentPage(pageNumber);
+
+    }
     return (
         <div className="temps-reel">
             <p> Visualisation > Visualisation en temps réel</p>
@@ -80,7 +92,7 @@ function TempsReel() {
                             <th scope="col">Date</th>
                             <th scope="col">Temps</th>
                             <th scope="col">Longueur</th>
-                            <th scope="col">Nombre Essieu</th>    
+                            <th scope="col">Nombre Essieu</th>
                             <th scope="col">Poids Total</th>
                             <th scope="col">Gap</th>
                             <th scope="col">Classe</th>
@@ -92,14 +104,14 @@ function TempsReel() {
                         </tr>
                     </thead>
                     <tbody>
-                        {result.map(donnee => <tr>
+                        {visibleElements.map(donnee => <tr>
                             <th scope="row">{JSON.stringify(donnee.id)}</th>
                             <td>{JSON.stringify(donnee.date)}</td>
                             <td>{JSON.stringify(donnee.time)}</td>
                             <td>{JSON.stringify(donnee.longueur)}</td>
                             <td>{JSON.stringify(donnee.nombreEssieu)}</td>
-                            <td>{JSON.stringify(donnee.poids_total)}</td>  
-                            <td>{JSON.stringify(donnee.gap)}</td>  
+                            <td>{JSON.stringify(donnee.poids_total)}</td>
+                            <td>{JSON.stringify(donnee.gap)}</td>
                             <td>{JSON.stringify(donnee.classe)}</td>
                             <td>{JSON.stringify(donnee.vitesse)}</td>
                             <td>{JSON.stringify(donnee.headway)}</td>
@@ -110,6 +122,11 @@ function TempsReel() {
                         </tr>)}
                     </tbody>
                 </table>
+                <Pagination
+                    elementsPerPage={elementsPerPage}
+                    totalElements={result.length}
+                    paginate={paginate}
+                />
             </div>}
         </div>
     );

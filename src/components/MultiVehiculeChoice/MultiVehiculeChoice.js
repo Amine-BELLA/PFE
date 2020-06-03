@@ -4,6 +4,7 @@ import InputField from "../InputField/InputField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Line } from 'react-chartjs-2';
+import Pagination from "../../utils/Pagination.js";
 
 // Time Picker imports
 import { makeStyles } from '@material-ui/core/styles';
@@ -123,6 +124,19 @@ function MultiVehiculeChoice() {
 
     }
 
+    //Pagination 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [elementsPerPage, setElementsPerPage] = useState(20);
+    const indexOfLastElement = currentPage * elementsPerPage;
+    const indexOfFirstElement = indexOfLastElement - elementsPerPage;
+    const totalElements = result.length;
+    const visibleElements = result.slice(indexOfFirstElement, indexOfLastElement);
+
+    function paginate(pageNumber) {
+        setCurrentPage(pageNumber);
+
+    }
+
 
     return (
         <div className="vehicule-container" >
@@ -214,7 +228,7 @@ function MultiVehiculeChoice() {
                         </tr>
                     </thead>
                     <tbody>
-                        {result.map(donnee => <tr>
+                        {visibleElements.map(donnee => <tr>
                             <th scope="row">{JSON.stringify(donnee.id)}</th>
                             <td>{JSON.stringify(donnee.date)}</td>
                             <td>{JSON.stringify(donnee.time)}</td>
@@ -223,44 +237,49 @@ function MultiVehiculeChoice() {
                             <td>{JSON.stringify(donnee.classe)}</td>
                             <td>{JSON.stringify(donnee.vitesse)}</td>
                             <td>{JSON.stringify(donnee.headway)}</td>
-                            <td>{JSON.stringify(donnee.overloaded)}</td>
+                            <td>{JSON.stringify(donnee.surcharge)}</td>
                             <td>{JSON.stringify(donnee.voie)}</td>
                             <td>{JSON.stringify(donnee.sens)}</td>
 
                         </tr>)}
                     </tbody>
                 </table>
+                <Pagination
+                    elementsPerPage={elementsPerPage}
+                    totalElements={result.length}
+                    paginate={paginate}
+                />
             </div>}
 
-            {!loadingState && <div className = "vehicule-chart">
+            {!loadingState && <div className="vehicule-chart">
                 <Line
-                data={{
-                    labels: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00",
-                        "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00",
-                        "23:00"],
-                    datasets: [{
-                        data: data["Poids Lourd"],
-                        label: "Poids lourd",
-                        borderColor: "#3e95cd",
-                        fill: false
-                    }, {
-                        data: data["Poids Total"],
-                        label: "Poids total",
-                        borderColor: "#8e5ea2",
-                        fill: false
-                    }]
-                }
-                }
-                options={
-                    {
-                        title: {
-                            display: true,
-                            text: 'Titre: Répartition Horaire du nombre de passage selon le type du véhicule'
+                    data={{
+                        labels: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00",
+                            "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00",
+                            "23:00"],
+                        datasets: [{
+                            data: data["Poids Lourd"],
+                            label: "Poids lourd",
+                            borderColor: "#3e95cd",
+                            fill: false
+                        }, {
+                            data: data["Poids Total"],
+                            label: "Poids total",
+                            borderColor: "#8e5ea2",
+                            fill: false
+                        }]
+                    }
+                    }
+                    options={
+                        {
+                            title: {
+                                display: true,
+                                text: 'Titre: Répartition Horaire du nombre de passage selon le type du véhicule'
+                            }
                         }
                     }
-                }
-            />
-                 </div>}
+                />
+            </div>}
         </div>
     );
 }

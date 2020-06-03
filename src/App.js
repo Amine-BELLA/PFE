@@ -34,6 +34,7 @@ function App() {
         <Route path="/exportation-donnees" component={ExportationDonnees} />
         <Route path="/liste-etat-equipements" component={Maintenance} />
         <Route path="/" exact component={Cartographie} />
+        <Route path="/cartographie" exact component={Cartographie} />
       </div>
       <Footer />
     </Router>

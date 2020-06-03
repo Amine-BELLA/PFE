@@ -4,6 +4,7 @@ import InputField from "../InputField/InputField";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ChoixVoie, { voieValues } from "../ChoixVoie/ChoixVoie";
+import Pagination from "../../utils/Pagination.js";
 
 
 // Time Picker imports
@@ -149,7 +150,18 @@ function VolumeClasse() {
     }
 
 
-    //result contains what's coming from the backend
+    //Pagination 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [elementsPerPage, setElementsPerPage] = useState(20);
+    const indexOfLastElement = currentPage * elementsPerPage;
+    const indexOfFirstElement = indexOfLastElement - elementsPerPage;
+    const totalElements = volumeParClasse.length;
+    const visibleElements = volumeParClasse.slice(indexOfFirstElement, indexOfLastElement);
+
+    function paginate(pageNumber) {
+        setCurrentPage(pageNumber);
+
+    }
 
     return (
         <div className="volume-classe-container">
@@ -239,7 +251,7 @@ function VolumeClasse() {
                         </tr>
                     </thead>
                     <tbody>
-                        {volumeParClasse.map(donnee => <tr>
+                        {visibleElements.map(donnee => <tr>
                             <th scope="row">{JSON.stringify(donnee.id)}</th>
                             <td>{JSON.stringify(donnee.date)}</td>
                             <td>{JSON.stringify(donnee.time)}</td>
@@ -255,6 +267,11 @@ function VolumeClasse() {
                         </tr>)}
                     </tbody>
                 </table>
+                <Pagination
+                    elementsPerPage={elementsPerPage}
+                    totalElements={volumeParClasse.length}
+                    paginate={paginate}
+                />
             </div>}
             {!loadingState && <Bar data={{
                 labels: Object.keys(result),

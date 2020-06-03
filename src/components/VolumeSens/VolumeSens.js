@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ChoixSens, { sensValues } from "../ChoixSens/ChoixSens";
 import { Bar } from 'react-chartjs-2';
+import Pagination from "../../utils/Pagination.js";
 
 // Time Picker imports
 import { makeStyles } from '@material-ui/core/styles';
@@ -123,6 +124,19 @@ function VolumeSens() {
             })
 
     }
+
+    //Pagination 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [elementsPerPage, setElementsPerPage] = useState(20);
+    const indexOfLastElement = currentPage * elementsPerPage;
+    const indexOfFirstElement = indexOfLastElement - elementsPerPage;
+    const totalElements = volumeParSens.length;
+    const visibleElements = volumeParSens.slice(indexOfFirstElement, indexOfLastElement);
+
+    function paginate(pageNumber) {
+        setCurrentPage(pageNumber);
+
+    }
     return (
         <div className="volume-sens-container">
             <div className="volume-sens">
@@ -213,7 +227,7 @@ function VolumeSens() {
                         </tr>
                     </thead>
                     <tbody>
-                        {volumeParSens.map(donnee => <tr>
+                        {visibleElements.map(donnee => <tr>
                             <th scope="row">{JSON.stringify(donnee.id)}</th>
                             <td>{JSON.stringify(donnee.equipementId)}</td>
                             <td>{JSON.stringify(donnee.date)}</td>
@@ -230,6 +244,11 @@ function VolumeSens() {
                         </tr>)}
                     </tbody>
                 </table>
+                <Pagination
+                    elementsPerPage={elementsPerPage}
+                    totalElements={volumeParSens.length}
+                    paginate={paginate}
+                />
             </div>}
 
             {!loading && <div className="volume-sens-chart">

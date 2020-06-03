@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { formatDate } from '../../utils/utils';
 import ChoixIdEquipements, { IdEquipementsValues } from "../ChoixIdEquipements/ChoixIdEquipements";
 import { Bar } from "react-chartjs-2";
+import Pagination from "../../utils/Pagination.js";
 
 // Time Picker imports
 import { makeStyles } from '@material-ui/core/styles';
@@ -120,7 +121,18 @@ function VolumeRoute() {
             });
 
     }
+    //Pagination 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [elementsPerPage, setElementsPerPage] = useState(20);
+    const indexOfLastElement = currentPage * elementsPerPage;
+    const indexOfFirstElement = indexOfLastElement - elementsPerPage;
+    const totalElements = volumeParRoute.length;
+    const visibleElements = volumeParRoute.slice(indexOfFirstElement, indexOfLastElement);
 
+    function paginate(pageNumber) {
+        setCurrentPage(pageNumber);
+
+    }
 
     return (
         <div>
@@ -226,7 +238,7 @@ function VolumeRoute() {
                         </tr>
                     </thead>
                     <tbody>
-                        {volumeParRoute.map(donnee => <tr>
+                        {visibleElements.map(donnee => <tr>
                             <th scope="row">{JSON.stringify(donnee.id)}</th>
                             <th scope="row">{JSON.stringify(donnee.equipementId)}</th>
                             <td>{JSON.stringify(donnee.date)}</td>
@@ -243,6 +255,11 @@ function VolumeRoute() {
                         </tr>)}
                     </tbody>
                 </table>
+                <Pagination
+                    elementsPerPage={elementsPerPage}
+                    totalElements={volumeParRoute.length}
+                    paginate={paginate}
+                />
             </div>}
 
             {!loadingState && <Bar data={{
