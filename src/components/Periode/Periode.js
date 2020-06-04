@@ -12,8 +12,6 @@ import TextField from '@material-ui/core/TextField';
 import { formatDate } from '../../utils/utils';
 function Periode() {
 
-
-
     //Time Picker config Start
     const useStyles = makeStyles((theme) => ({
         container: {
@@ -133,9 +131,7 @@ function Periode() {
 
     function paginate(pageNumber) {
         setCurrentPage(pageNumber);
-        
     }
-
 
     return (
         <div className="periode-container">

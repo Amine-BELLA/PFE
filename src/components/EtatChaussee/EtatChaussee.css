@@ -6,10 +6,55 @@
     border: 1px #d4f8e8 solid;
     border-radius: 10px;
     font-family: 'Roboto', sans-serif;
+    padding: 0.5 1.5rem;
+}
+
+.etat-chaussee-grid {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 5%;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2rem;
     
 }
 
-.etat-chaussee select {
-    width: 70%;
-    margin: 0 auto;
+.second-grid {
+    display: grid;
+    grid-template-columns: 35% 20% 35%;
+    column-gap: 5%;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.etat-chaussee-grid select {
+    width: 75%;
+    margin : 0 auto 1rem ;
+}
+
+.cam {
+    background-color: #e9ecef;
+    border: 1px solid #d4f8e8;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 5%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.etat-chaussee-table {
+    font-size: 0.8rem;
+    width: 80%;
+    margin : 1rem auto 1rem;
 }
