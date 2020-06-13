@@ -25,7 +25,7 @@ function App() {
       <div className="layout">
         <SideBar />
         <Route path="/configuration-utilisateurs" exact component={ConfigurationUtilisateur} />
-        <Route path="/configuration-reseau" exact component={ConfigurationReseau} />
+        {/* <Route path="/configuration-reseau" exact component={ConfigurationReseau} /> */}
         <Route path="/configuration-equipements" exact component={ConfiguratinEquipements} />
         <Route path="/visualisation-donnees" component={VisualisationDonnees} />
         <Route path="/visualisation-temps-reel" component={TempsReel} />

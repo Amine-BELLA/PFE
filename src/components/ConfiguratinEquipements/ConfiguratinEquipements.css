@@ -1,6 +1,9 @@
 .equipements-layout {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 5%;
+    justify-content: center;
+    text-align: center;
 }
 
 .equipements-container {
@@ -23,14 +26,11 @@ h5 {
     margin-left: 2rem;
 }
 
-.ajouter-equipement {
-    margin-top: 2rem;
-}
 
 .ajouter-equipement i {
     margin-right: 0.5rem;
 }
 
 .ajouter-equipement button {
-    margin-right: 4rem;
-}
+    margin: 2rem auto;
+} 

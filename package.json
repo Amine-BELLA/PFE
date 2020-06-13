@@ -12,6 +12,7 @@
     "chart.js": "^2.9.3",
     "dateformat": "^3.0.3",
     "google-maps-react": "^2.0.6",
+    "html2canvas": "^1.0.0-rc.5",
     "jspdf": "^1.5.3",
     "jspdf-autotable": "^3.5.3",
     "leaflet": "^1.6.0",

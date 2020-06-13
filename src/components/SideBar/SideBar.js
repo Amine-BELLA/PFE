@@ -16,7 +16,7 @@ function SideBar() {
                 <label className="my-label" for="A"><i class="fas fa-user-cog"></i> Configuration <i id="arrow" class="fas fa-caret-right"></i></label>
                 <ul>
                     <li><NavLink to="/configuration-utilisateurs" className="my-link" >  Utilisateurs</NavLink> </li>
-                    <li><NavLink to="/configuration-reseau" className="my-link">  Réseau</NavLink> </li>
+                    {/* <li><NavLink to="/configuration-reseau" className="my-link">  Réseau</NavLink> </li> */}
                     <li><NavLink to="/configuration-equipements" className="my-link">  Equipements</NavLink> </li>
                 </ul>
             </div>
